@@ -36,6 +36,7 @@
     "lint:typescript": "tsc --allowJs --checkJs --noEmit --resolveJsonModule --target es2024 --lib es2024 -m esnext --module nodenext --moduleResolution nodenext ./src**/*.mjs"
   },
   "dependencies": {
+    "@influxdata/influxdb-client": "^1.35.0",
     "@kronos-integration/service": "^11.2.8",
     "attributes": "^0.1.337"
   },

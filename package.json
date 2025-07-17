@@ -37,8 +37,7 @@
   },
   "dependencies": {
     "@influxdata/influxdb-client": "^1.35.0",
-    "@kronos-integration/service": "^11.2.11",
-    "attributes": "^0.1.337"
+    "@kronos-integration/service": "^11.2.13"
   },
   "devDependencies": {
     "@kronos-integration/test-interceptor": "^7.0.29",
@@ -52,7 +51,7 @@
     "typescript": "^5.8.3"
   },
   "engines": {
-    "node": ">=22.16.0"
+    "node": ">=22.17.1"
   },
   "repository": {
     "type": "git",

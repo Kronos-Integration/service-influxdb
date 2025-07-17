@@ -4,7 +4,7 @@ import { InfluxDB, Point } from "@influxdata/influxdb-client";
 
 
 /**
- * MQTT client.
+ * influxdb client.
  */
 export class ServiceInfluxdb extends Service {
   /**

@@ -5,13 +5,15 @@ import { InfluxDB } from "@influxdata/influxdb-client";
 const CONFIG_ATTRIBUTES =
   prepareAttributesDefinitions({
     url: {
+      type: "url",
       description: "url of the influxdb server",
       needsRestart: true,
-      type: "url"
+      env: "INFLUXDB_URL",
     },
     token: {
       type: "string",
-      private: true
+      private: true,
+      env: "INFLUXDB_TOKEN",
     },
   ...Service.configurationAttributes
   });

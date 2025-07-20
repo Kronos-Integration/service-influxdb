@@ -2,7 +2,7 @@ import { prepareAttributesDefinitions } from "pacc";
 import { Service } from "@kronos-integration/service";
 import { InfluxDB } from "@influxdata/influxdb-client";
 
-const ATTRIBUTES =
+const CONFIG_ATTRIBUTES =
   prepareAttributesDefinitions({
     url: {
       description: "url of the influxdb server",
@@ -32,7 +32,7 @@ export class ServiceInfluxdb extends Service {
   }
 
   static get configurationAttributes() {
-    return ATTRIBUTES;
+    return CONFIG_ATTRIBUTES;
   }
 
   /**

@@ -1,7 +1,20 @@
-import { mergeAttributes, createAttributes } from "model-attributes";
+import { prepareAttributesDefinitions } from "pacc";
 import { Service } from "@kronos-integration/service";
-import { InfluxDB, Point } from "@influxdata/influxdb-client";
+import { InfluxDB } from "@influxdata/influxdb-client";
 
+const ATTRIBUTES =
+  prepareAttributesDefinitions({
+    url: {
+      description: "url of the influxdb server",
+      needsRestart: true,
+      type: "url"
+    },
+    token: {
+      type: "string",
+      private: true
+    },
+  ...Service.configurationAttributes
+  });
 
 /**
  * influxdb client.
@@ -19,20 +32,7 @@ export class ServiceInfluxdb extends Service {
   }
 
   static get configurationAttributes() {
-    return mergeAttributes(
-      createAttributes({
-        url: {
-          description: "url of the influxdb server",
-          needsRestart: true,
-          type: "url"
-        },
-        token: {
-          type: "string",
-          private: true
-        }
-      }),
-      Service.configurationAttributes
-    );
+    return ATTRIBUTES;
   }
 
   /**
@@ -45,7 +45,7 @@ export class ServiceInfluxdb extends Service {
   async _start() {
     await super._start();
 
-    const client = new InfluxDB({ this.url, this.token });
+    const client = new InfluxDB({ url: this.url, token: this.token });
 
     this.client = client;
   }

@@ -15,12 +15,21 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
+        os:
+          - ubuntu-latest
         node-version:
-          - 22.17.1
           - 24.4.1
     steps:
       - name: checkout
         uses: actions/checkout@v4.2.2
+      - name: Setup InfluxDB
+        uses: influxdata/influxdb-action@v3
+        with:
+          influxdb_version: 2.7.10
+          influxdb_org: influxdata
+          influxdb_user: ci_user
+          influxdb_password: password
+          influxdb_bucket: dummy
       - name: prepare node
         uses: actions/setup-node@v4.4.0
         with:
@@ -42,6 +51,7 @@ jobs:
   release:
     needs:
       - test-node
+    runs-on: ubuntu-latest
     permissions:
       contents: write
       issues: write

@@ -1,22 +1,6 @@
-import { prepareAttributesDefinitions } from "pacc";
+import { prepareAttributesDefinitions, url_attribute } from "pacc";
 import { Service } from "@kronos-integration/service";
 import { InfluxDB } from "@influxdata/influxdb-client";
-
-const CONFIG_ATTRIBUTES =
-  prepareAttributesDefinitions({
-    url: {
-      type: "url",
-      description: "url of the influxdb server",
-      needsRestart: true,
-      env: "INFLUXDB_URL",
-    },
-    token: {
-      type: "string",
-      private: true,
-      env: "INFLUXDB_TOKEN",
-    },
-  ...Service.configurationAttributes
-  });
 
 /**
  * influxdb client.
@@ -33,9 +17,20 @@ export class ServiceInfluxdb extends Service {
     return "influxdb client";
   }
 
-  static get configurationAttributes() {
-    return CONFIG_ATTRIBUTES;
-  }
+  static attributes = prepareAttributesDefinitions({
+    url: {
+      ...url_attribute,
+      description: "url of the influxdb server",
+      needsRestart: true,
+      env: "INFLUXDB_URL"
+    },
+    token: {
+      type: "string",
+      private: true,
+      env: "INFLUXDB_TOKEN"
+    },
+    ...Service.attributes
+  });
 
   /**
    * @return {string} name with url

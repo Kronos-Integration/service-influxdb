@@ -25,7 +25,7 @@ jobs:
       - name: Setup InfluxDB
         uses: influxdata/influxdb-action@v3
         with:
-          influxdb_version: 2.7.10
+          influxdb_version: latest
           influxdb_org: influxdata
           influxdb_user: ci_user
           influxdb_password: password

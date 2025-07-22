@@ -56,7 +56,10 @@ export class ServiceInfluxdb extends Service {
   async _start() {
     await super._start();
 
-    const client = new InfluxDB({ url: this.url, token: await this.token });
+    const client = new InfluxDB({
+      url: this.url,
+      token: await this.getCredential("token")
+    });
 
     this.client = client;
   }

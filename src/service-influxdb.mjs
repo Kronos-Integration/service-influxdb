@@ -6,6 +6,7 @@ import {
 } from "pacc";
 import { Service } from "@kronos-integration/service";
 import { InfluxDB } from "@influxdata/influxdb-client";
+import { PointEndpoint } from "./point-endpoint.mjs";
 
 /**
  * influxdb client.
@@ -53,6 +54,14 @@ export class ServiceInfluxdb extends Service {
     return `${this.name}(${this.url})`;
   }
 
+  endpointFactoryFromConfig(name, definition, ic) {
+    if (name.indexOf(".") >= 0) {
+      return PointEndpoint;
+    }
+
+    return super.endpointFactoryFromConfig(name, definition, ic);
+  }
+
   async _start() {
     await super._start();
 
@@ -62,10 +71,12 @@ export class ServiceInfluxdb extends Service {
     });
 
     this.client = client;
+    this.writeApi = client.getWriteApi(this.org, this.bucket);
   }
 
   async _stop() {
-    return super._stop();
+    await super._stop();
+    return this.writeApi?.close();
   }
 }
 

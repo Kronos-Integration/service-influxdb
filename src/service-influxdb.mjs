@@ -7,6 +7,7 @@ import {
 import { Service } from "@kronos-integration/service";
 import { InfluxDB } from "@influxdata/influxdb-client";
 import { PointEndpoint } from "./point-endpoint.mjs";
+export { PointEndpoint };
 
 /**
  * influxdb client.

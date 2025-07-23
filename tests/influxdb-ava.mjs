@@ -1,7 +1,7 @@
 import test from "ava";
 
 import { StandaloneServiceProvider } from "@kronos-integration/service";
-import { ServiceInfluxdb } from "@kronos-integration/service-influxdb";
+import { ServiceInfluxdb, PointEndpoint } from "@kronos-integration/service-influxdb";
 
 test("start / stop", async t => {
   const sp = new StandaloneServiceProvider();
@@ -20,7 +20,7 @@ test("start / stop", async t => {
   t.truthy(influxdb.client);
   t.truthy(influxdb.writeApi);
 
-  //influxdb.endpoints["aPoint.aField"].receive("1.23");
+  t.true(influxdb.endpoints["aPoint.aField"] instanceof PointEndpoint);
 
   await influxdb.stop();
   t.is(influxdb.state, "stopped");

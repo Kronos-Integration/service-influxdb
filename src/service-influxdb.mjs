@@ -2,7 +2,7 @@ import {
   prepareAttributesDefinitions,
   url_attribute,
   token_attribute,
-  default_attribute
+  string_attribute_writable
 } from "pacc";
 import { Service } from "@kronos-integration/service";
 import { InfluxDB } from "@influxdata/influxdb-client";
@@ -37,11 +37,11 @@ export class ServiceInfluxdb extends Service {
         env: "INFLUXDB_TOKEN"
       },
       org: {
-        ...default_attribute,
+        ...string_attribute_writable,
         env: "INFLUXDB_ORG"
       },
       bucket: {
-        ...default_attribute,
+        ...string_attribute_writable,
         env: "INFLUXDB_BUCKET"
       }
     },

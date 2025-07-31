@@ -55,6 +55,15 @@ export class ServiceInfluxdb extends Service {
     return `${this.name}(${this.url})`;
   }
 
+  endpointOnDemand(expression, from) {
+    if (expression.indexOf(".") >= 0) {
+      this.info(`create endpoint ${expression}`);
+      const endpoint = new PointEndpoint(expression, this);
+      this.addEndpoint(endpoint);
+      return endpoint;
+    }
+  }
+
   endpointFactoryFromConfig(name, definition, ic) {
     if (name.indexOf(".") >= 0) {
       return PointEndpoint;

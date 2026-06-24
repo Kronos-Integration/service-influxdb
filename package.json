@@ -33,7 +33,7 @@
   },
   "dependencies": {
     "@influxdata/influxdb-client": "^1.35.0",
-    "@kronos-integration/service": "^15.7.2",
+    "@kronos-integration/service": "^15.7.3",
     "pacc": "^10.0.2"
   },
   "devDependencies": {

@@ -38,10 +38,12 @@ export class ServiceInfluxdb extends Service {
       },
       org: {
         ...string_attribute_writable,
+        name: "org",
         env: "INFLUXDB_ORG"
       },
       bucket: {
         ...string_attribute_writable,
+        name: "bucket",
         env: "INFLUXDB_BUCKET"
       }
     },
